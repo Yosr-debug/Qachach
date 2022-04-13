@@ -26,7 +26,7 @@
             !empty($_POST["description"])
         ) {
             $reclamation = new Reclamation(
-                $_POST['id'],
+                
 				$_POST['type'],
                 $_POST['date'], 
 				$_POST['description'],
@@ -160,7 +160,7 @@ https://templatemo.com/tm-571-hexashop
                                             </tr>
                                             <tr >
                                                <td style="color: white; top: 30px; position: relative;"><label for="type">Type de Reclamation</label></td>
-                                               <td style="color: white; position: relative; left: 20px; top: 27px;"><input type="radio" name="type" value="livraison" id="type" >Livraison <input type="radio" name="type" value="produits">Produits <input type="radio" name="type" value="autres">Autres</td>
+                                               <td style="color: white; position: relative; left: 20px; top: 27px;"><input type="text" name="type" value="livraison" id="type" value="<?php echo $reclamation['type']; ?>" ></td>
                                                
                                            </tr>
                                            <tr>
@@ -169,7 +169,7 @@ https://templatemo.com/tm-571-hexashop
                                            </tr>
                                            <tr>
                                                <td style="color: white ; position: relative; top: -41px;"><Label  for="description">Description</Label></td>
-                                               <td style="position: relative; left: 25px; top: 75px;"><textarea name="description" id="description" cols="50" rows="10"  v><?php echo $reclamation['description']; ?></textarea></td>
+                                               <td style="position: relative; left: 25px; top: 75px;"><textarea name="description" id="description" cols="50" rows="10"  ><?php echo $reclamation['description']; ?></textarea></td>
                                            </tr>
                                             <tr>
                                                <td style="color: white; position: relative; top: 84px;"><label for="email">Email</label></td>

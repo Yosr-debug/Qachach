@@ -166,7 +166,7 @@ https://templatemo.com/tm-571-hexashop
                                            
                                            <tr >
                                                <td style="color: white; top: -42px; position: relative;"><label for="type">Type de Reclamation</label></td>
-                                               <td style="color: white; position: relative; left: 20px; top: -44px;"><input type="radio" name="type" value="livraison" id="type">Livraison <input type="radio" name="type" value="produits">Produits <input type="radio" name="type" value="autres">Autres</td>
+                                               <td style="color: white; position: relative; left: 20px; top: -44px;"><input type="text" name="type"  id="type">
                                                
                                            </tr>
                                            <tr>
@@ -177,13 +177,13 @@ https://templatemo.com/tm-571-hexashop
                                                <td style="color: white; position: relative; top: -18px;"><label for="sujet">Sujet</label></td>
                                                <td style="position: relative; left: 25px; top: -22px;"><input type="text" name="sujet" id="sujet"></td>
                                            </tr>
-                                           <p id="errorMR"  style="color:red; position:relative; top: 136px; left: 746px;"></p>
+                                           
                                            <tr>
                                                <td style="color: white ; position: relative; top: -113px;"><Label  for="description">Description</Label></td>
                                                <td style="position: relative; left: 25px;"><textarea name="description" id="description" cols="50" rows="10" placeholder="Description et vos Remarques..."></textarea></td>
                                            </tr>
                                            <tr>
-                                               <td ><button onclick="verif()" style="position: relative; left: 195px; top: 25px;" type="submit" >Envoyer</button></td>
+                                               <td ><button  style="position: relative; left: 195px; top: 25px;" type="submit" >Envoyer</button></td>
                                                <td><input style="position: relative; left: 118px; top: 25px;" type="reset" value="Annuler"></td>
                                            </tr>
                                      
