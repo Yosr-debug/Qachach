@@ -40,7 +40,7 @@ public function setmail(string $mail)
 {
     $this->mail=$mail;
 }
-public function setsujet(string $sujet)
+public function settsujet(string $sujet)
 {
     $this->sujet=$sujet;
 }
