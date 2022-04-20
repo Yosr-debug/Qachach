@@ -1,10 +1,10 @@
 <?php
 include_once '../config.php';
-include_once '../Model/Reclamation.php';
+include_once 'C:/xampp/htdocs/Reclamation/Model/Reclamation.php';
 
 class ReclamationC{
     function afficherreclamation(){
-        $sql="SELECT * FROM reclamations";
+        $sql="SELECT * FROM reclamations WHERE (mail='trabelsi.dali484@gmail.com')" ;
         $db = config::getConnexion();
         try{
             $liste = $db->query($sql);

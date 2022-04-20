@@ -70,23 +70,23 @@ https://templatemo.com/tm-571-hexashop
                         </li>
                             <li class="scroll-to-section"><a href="evenement.html">Evénements</a></li>
                             <li class="scroll-to-section">
-                                <a href="livraison.html">Livraison</a>
+                                <a href="./login/index.html">Livraison</a>
                             </li>
                             
                             <li class="submenu">
                                 <a href="javascript:;">Reclamation</a>
                                 <ul>
-                                    <li><a href="ajouterreclamation.php">Envoyer Reclamation</a></li>
-                                    <li><a href="consulterreclamation.php">Consulter Reclamation</a></li>
+                                    <li><a href="./login/index.php">Envoyer Reclamation</a></li>
+                                    <li><a href="./login/index.php">Consulter Reclamation</a></li>
                                     
                                     
                                 </ul>
                             </li>
                             
-                            <li style="background-color: white; color: black; position: relative; right: 2px;"><a href="index.html">se deconnecter</a></li>
+                            <li style="background-color: white; color: black; position: relative; right: 2px;"><a href="./login/index.php">se connecter</a></li>
                         
                             <li class="scroll-to-section">
-                            <a href="ajouter_dans_panier.html">
+                            <a href="./login/index.html">
                             <img src="assets/images/ajouter-un-panier.png" alt=""  height ="30" width="30">
                             </a>
                             </li>
