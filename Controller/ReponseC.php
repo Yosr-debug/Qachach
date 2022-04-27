@@ -26,8 +26,8 @@ class ReponseC{
         }
     }
     function ajouterreponse($reponse){
-        $sql="INSERT INTO  reponse_reclamation ( date_reponse, description_reponse,mail_reponse, sujet_reponse) 
-        VALUES (:date_reponse,:description_reponse, :mail_reponse, :sujet_reponse)";
+        $sql="INSERT INTO  reponse_reclamation ( date_reponse, description_reponse,mail_reponse, sujet_reponse,id_reclamation) 
+        VALUES (:date_reponse,:description_reponse, :mail_reponse, :sujet_reponse ,:id_reclamation)";
         $db = config::getConnexion();
         try{
             $query = $db->prepare($sql);
@@ -36,7 +36,8 @@ class ReponseC{
                 'date_reponse' => $reponse->getdate(),
                 'description_reponse' => $reponse->getdescription(),
                 'mail_reponse' => $reponse->getmail(),
-                'sujet_reponse' => $reponse->getsujet()
+                'sujet_reponse' => $reponse->getsujet(),
+                'id_reclamation'=>$reponse->getid_reclamation()
                 
             ]);			
         }
@@ -96,7 +97,18 @@ class ReponseC{
 			}
 
     }
-    
-    
 
+    
+    function afficherreponse1($email){
+        $sql="SELECT * FROM reponse_reclamation where mail_reponse=('$email')";
+        $db = config::getConnexion();
+        try{
+            $liste = $db->query($sql);
+            return $liste;
+        }
+        catch(Exception $e){
+            die('Erreur:'. $e->getMessage());
+        }
+
+}
 }

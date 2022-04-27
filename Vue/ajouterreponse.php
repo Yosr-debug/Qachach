@@ -11,22 +11,25 @@ if (
     isset($_POST["email"]) &&
     isset($_POST["sujet"]) &&
     isset($_POST["date"]) && 
-    isset($_POST["message"]) 
-    
-) {
+    isset($_POST["message"])&&
+    isset($_POST["id_reclamation"])
+     ) {
     if (
         
         !empty($_POST["email"]) && 
         !empty($_POST["message"]) && 
         !empty($_POST["date"]) && 
-        !empty($_POST["sujet"])  
+        !empty($_POST["sujet"])&&
+        isset($_POST["id_reclamation"] )  
         
     ) {
+        
           $reponse = new Reponse(
           $_POST['date'],
           $_POST['message'],
           $_POST['email'], 
-          $_POST['sujet']
+          $_POST['sujet'],
+          $_POST['id_reclamation']
           
       );
      
@@ -109,7 +112,7 @@ if (
     </style>
 </head>
 
-<body style="height:800px">
+<body style="height:800px ">
     <!-- Left Panel -->
     <aside id="left-panel" class="left-panel">
         <nav class="navbar navbar-expand-sm navbar-default">
@@ -283,38 +286,43 @@ if (
 				$reclamation = $reclamationC->recupererreclamation($_POST['id']);
 				
 		?>
-        <form action="" method="POST" style=" border:solid 5px red;">
-        <table style="position:relative; top: 249px; left: 150px; width: 380px;height :216px; " >
-                                      
+        <div  style="height:500px; background-color:black;">
+        <form action="" method="POST" style="  height:0px">
+        <table style="position:relative; top: 0px; left: 150px; width: 100%;height :0px; border=1;" >
+        <tr>
+                                               <td style="color: gold; position: relative; top: 32px; width: 100px;"><label for="date">ID_Reclamation</label></td>
+                                               <td style="position: relative; left: 25px; top: 32px;"><input type="number" name="id_reclamation" id="id_reclamation" readonly value="<?php echo $reclamation['id_reclamation']; ?>"></td>
+                                           </tr>
                                           
                                            <tr>
-                                               <td style="color: black; position: relative; top: 42px;"><label for="date">Date</label></td>
+                                               <td style="color: gold; position: relative; top: 42px; width: 100px;"><label for="date">Date</label></td>
                                                <td style="position: relative; left: 25px; top: 38px;"><input type="date" name="date" id="date" ></td>
                                            </tr>
                                         
                                             <tr>
-                                               <td style="color: black; position: relative; top: 58px;"><label for="email">Email</label></td>
-                                               <td style="position: relative; left: 25px; top: 56px;"><input type="email" name="email" id="email" value="<?php echo $reclamation['mail']; ?>"></td>
+                                               <td style="color: gold; position: relative; top: 58px;"><label for="email">Email</label></td>
+                                               <td style="position: relative; left: 25px; top: 56px;"><input type="email" name="email" id="email" value="<?php echo $reclamation['mail']; ?> " readonly></td>
                                            </tr>
                                        
                                         
                                            <tr>
-                                               <td style="color: black; position: relative; top: 110px;"><label for="sujet">Sujet</label></td>
-                                               <td style="position: relative; left: 25px; top: 100px;"><input type="text" name="sujet" id="sujet" value="<?php echo $reclamation['sujet']; ?>"></td>
+                                               <td style="color: gold; position: relative; top: 110px;"><label for="sujet">Sujet</label></td>
+                                               <td style="position: relative; left: 25px; top: 100px; "><input type="text" name="sujet" id="sujet" value="<?php echo $reclamation['sujet']; ?>" readonly></td>
                                            </tr>
                                         
                                          
                                            
                                            <tr>
-                                               <td style="color: black ; position: relative; top: 144px;"><Label  for="message">Message</Label></td>
+                                               <td style="color: gold ; position: relative; top: 144px;"><Label  for="message">Message</Label></td>
                                                <td style="position: relative; left: 25px; top:140px"><input name="message" id="message" cols="50" rows="10" placeholder="Description et vos Remarques..."></td>
                                            </tr>
                                            <tr>
-                                               <td ><input style="position: relative; left: 195px; top: 200px;" type="submit" value="Envoyer"></td>
+                                               <td ><input style="position: relative; left: 120px; top: 200px;" type="submit" value="Envoyer"></td>
                                                <td><input style="position: relative; left: 118px; top: 200px;" type="reset" value="Annuler"></td>
                                            </tr>
                                            </table>
         </form>
+        </div>
         <?php
 		}
 		?>

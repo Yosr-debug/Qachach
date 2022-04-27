@@ -4,7 +4,7 @@
     include_once "C:/xampp/htdocs/Reclamation/Controller/ReclamationC.php";
 
 	$reclamationC=new ReclamationC();
-	$listeReclamations=$reclamationC->afficherreclamation(); 
+	$listeReclamations=$reclamationC->afficherreclamation1(); 
 ?>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
@@ -241,16 +241,17 @@
                 </div>
             </div>
         </header>
-        <h4 style ="color:red; position:relative; top:288px; left:415px;">Liste Des Réclamations</h2>
-        <table border="2" style="position: relative; left: 273px; top: 334px; width: 350px; height: 250px;">
+        <div style="background-color:black; height:100%">
+        <<!--h4 style ="color:red; position:relative; top:288px; left:415px;">Liste Des Réclamations</h2>-->
+        <table border="2" style="position: relative;  top: 0px; width: 100%; height: 250px;">
                  <tr>
-                     <td style="color:green;">ID</td>
-                     <td style="color: green;">Type de Réclamation</td>
-                     <td style="color: green;">Date</td>
-                     <td style="color: green;">Description</td>
-                     <td style="color:green;">Email</td>
-                     <td style="color:green;">Sujet</td>
-                     <td colspan="2" style="color:green;">Actions</td>
+                     <th style="color:gold;">ID</th>
+                     <th style="color: gold;">Type de Réclamation</th>
+                     <th style="color: gold;">Date</th>
+                     <th style="color: gold;">Description</th>
+                     <th style="color:gold;">Email</th>
+                     <th style="color:gold;">Sujet</th>
+                     <th colspan="2" style="color:gold;">Actions</th>
 
                      <!--<td colspan="2" style="color: white; text-align: center;">Actions</td>-->
                  </tr>
@@ -258,15 +259,15 @@
                  foreach($listeReclamations as $reclamation){
                      ?>
                      <tr>
-               <td style="color:black;"><?php echo $reclamation['id_reclamation']; ?></td>
-				<td style="color:black;"><?php echo $reclamation['type']; ?></td>
-				<td style="color:black;"><?php echo $reclamation['date_reclamation']; ?></td>
-				<td style="color:black;"><?php echo $reclamation['description']; ?></td>
-				<td style="color:black;"><?php echo $reclamation['mail']; ?></td>
-                <td style="color:black;"><?php echo $reclamation['sujet']; ?></td>
+               <td style="color:white;"><?php echo $reclamation['id_reclamation']; ?></td>
+				<td style="color:white;"><?php echo $reclamation['type']; ?></td>
+				<td style="color:white;"><?php echo $reclamation['date_reclamation']; ?></td>
+				<td style="color:white;"><?php echo $reclamation['description']; ?></td>
+				<td style="color:white;"><?php echo $reclamation['mail']; ?></td>
+                <td style="color:white;"><?php echo $reclamation['sujet']; ?></td>
                 <td>
                 <form method="POST" action="ajouterreponse.php">
-						<input type="image" id="image" src="./images/repondre.png">
+						<input type="image" id="image" src="./images/repondre.png" style="color:white">
 						<input type="hidden" value=<?PHP echo $reclamation['id_reclamation']; ?> name="id">
 					</form>
 				</td>
@@ -277,5 +278,6 @@
                  ?>
 
                 </table>
+                </div>
                 </body>
                 <html>

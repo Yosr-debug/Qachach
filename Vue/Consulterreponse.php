@@ -239,16 +239,16 @@ $reponseC=new ReponseC();
                 </div>
             </div>
         </header>
-        <h4 style ="color:red; position:relative; top:288px; left:415px;">Liste Des Réponses</h2>
-        <table border="2" style="position: relative; left: 273px; top: 334px; width: 350px; height: 250px;">
+        <!--<h4 style ="color:red; position:relative; top:288px; left:415px;">Liste Des Réponses</h2>-->
+        <table border="2" style="position: relative;  top: 0px; width: 100%; height: 100%; background-color:black;">
                  <tr>
-                     <td style="color:green;">ID</td>
-                     <td style="color:green;">Email</td>
-                     <td style="color: green;">Date</td>
-                     <td style="color:green;">Sujet</td>
-                     <td style="color: green;">Message</td>
+                     <th style="color:gold;">ID</th>
+                     <th style="color:gold;">Email</th>
+                     <th style="color: gold;">Date</th>
+                     <th style="color:gold;">Sujet</th>
+                     <th style="color: gold;">Message</th>
                      
-                     <td colspan="2" style="color:green;">Actions</td>
+                     <th colspan="2" style="color:gold;">Actions</th>
 
                      <!--<td colspan="2" style="color: white; text-align: center;">Actions</td>-->
                  </tr>
@@ -256,11 +256,11 @@ $reponseC=new ReponseC();
                  foreach($listeReponses as $reponse){
                      ?>
                      <tr>
-               <td style="color:black;"><?php echo $reponse['id_reponse']; ?></td>
-               <td style="color:black;"><?php echo $reponse['mail_reponse']; ?></td>
-				<td style="color:black;"><?php echo $reponse['date_reponse']; ?></td>
-                <td style="color:black;"><?php echo $reponse['sujet_reponse']; ?></td>
-				<td style="color:black;"><?php echo $reponse['description_reponse']; ?></td>
+               <td style="color:white;"><?php echo $reponse['id_reponse']; ?></td>
+               <td style="color:white;"><?php echo $reponse['mail_reponse']; ?></td>
+				<td style="color:white;"><?php echo $reponse['date_reponse']; ?></td>
+                <td style="color:white;"><?php echo $reponse['sujet_reponse']; ?></td>
+				<td style="color:white;"><?php echo $reponse['description_reponse']; ?></td>
 				<td>
 					<form method="POST" action="modifierreponse.php">
 						<input type="image" id="image" src="./images/modifier.png">
