@@ -1,20 +1,13 @@
 <?php
 session_start();
+include 'C:/xampp/htdocs/Reponse/Controller/ReponseC.php';
+include 'C:/xampp/htdocs/Reponse/Model/Reponse.php';
 
-	include '../Controller/ReclamationC.php';
-	$reclamationC=new ReclamationC();
-    $email=$_SESSION['email'];
-    if(isset($_GET['recherche']))
-    {
-        $listeReclamations=$reclamationC->rechercherreclamation($_GET['recherche']);
-    }
-    else if(isset($_POST['date']))
-    {
-        $listeReclamations=$reclamationC->trierreclamation();  
-    }
-    else{
-	$listeReclamations=$reclamationC->afficherreclamation($email); 
-    }
+$email=$_SESSION['email'];
+$reponseC=new ReponseC();
+	$listeReponses=$reponseC->afficherreponse1($email); 
+
+    ?>
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -114,7 +107,7 @@ https://templatemo.com/tm-571-hexashop
                             <div class="left-content">
                                 <div class="thumb">
                                     <div class="inner-content">
-                                        <h4 style="color: black; font-size: 15px; text-align: center; position: relative; left: 500px;">Systeme de Gestion des Reclamations des clients</h4>
+                                        <h4 style="color: black; font-size: 15px; text-align: center; position: relative; left: 500px;">Systeme de Gestion des Reponses des reclamations</h4>
                                         </div>
                                         </div>
                                         </div>
@@ -123,56 +116,31 @@ https://templatemo.com/tm-571-hexashop
                 </div>
                 </div>
                 <div style="background-color: rgb(44, 44, 44); height: 500px;">
-                    <!--<h4 style="color: white;">La Liste Des Rèclamations </h3>-->
-                    <form action="" method="GET">
-                        <table style=" position:relative;top:70px;">
-                            <tr>
-                        <td><input type="research" placeholder="Rechercher" name="recherche" ></td>
-                        <td><input Type="submit" value="Rechercher"></td>
-                      </table>
-                    </form>
-                    <form action="" method="POST">
-                        <table style=" position:relative;top:40px; right:-1250px;">
-                            <tr>
-                        <td><input type="text"  name="date" hidden value="1"></td>
-                        <td><input Type="submit" value="Trier" style="width:200px;"></td>
-                      </table>
-                    </form>
                 <table border="4" style="position: relative;  top: 50px; width: 100%; height: 150px; ">
                  <tr>
-                     <th style="color:gold;">ID</th>
-                     <th style="color: gold;">Type de Réclamation</th>
-                     <th style="color: gold;">Date</th>
-                     <th style="color: gold;">Description</th>
-                     <th style="color:gold;">Email</th>
-                     <th style="color:gold;">Sujet</th>
-                     <th colspan="2" style="color:gold;">Actions</th>
+                     <th style="color:gold; padding:15px;">ID_Reclamation</th>
+                     <th style="color: gold;padding:15px;">Date_Reponse</th>
+                     <th style="color:gold;padding:15px;">Sujet</th>
+                     <th style="color: gold;padding:15px;">Reponse</th>
+                    
+                     
+                     
 
                      <!--<td colspan="2" style="color: white; text-align: center;">Actions</td>-->
                  </tr>
                  <?php
-                 foreach($listeReclamations as $reclamation){
+                 foreach($listeReponses as $reponse){
                      ?>
                      <tr>
-               <td style="color:white;"><?php echo $reclamation['id_reclamation']; ?></td>
-				<td style="color:white;"><?php echo $reclamation['type']; ?></td>
-				<td style="color:white;"><?php echo $reclamation['date_reclamation']; ?></td>
-				<td style="color:white;"><?php echo $reclamation['description']; ?></td>
-				<td style="color:white;"><?php echo $reclamation['mail']; ?></td>
-                <td style="color:white;"><?php echo $reclamation['sujet']; ?></td>
-                <td>
-					<form method="POST" action="modifierreclamation.php">
-						<input type="image" id="image" src="./assets/images/modifier.png">
-						<input type="hidden" value=<?PHP echo $reclamation['id_reclamation']; ?> name="id">
-					</form>
-				</td>
-				<td>
-                <form method="POST" action="supprimerreclamation.php">
-						<input type="image" id="image" src="./assets/images/supprimer.png">
-						<input type="hidden" value=<?PHP echo $reclamation['id_reclamation']; ?> name="id">
-					</form>
-					
-				</td>
+               
+				<td style="color:white; padding:15px;"><?php echo $reponse['id_reclamation']; ?></td>
+				<td style="color:white; padding:15px;"><?php echo $reponse['date_reponse']; ?></td>
+                <td style="color:white; padding:15px;"><?php echo $reponse['sujet_reponse']; ?></td>
+				<td style="color:white; padding:15px;"><?php echo $reponse['description_reponse']; ?></td>
+				
+                
+                
+			
                 </tr>
                 <?php
                  }

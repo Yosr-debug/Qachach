@@ -1,12 +1,18 @@
 <?php
+session_start();
 include_once '../config.php';
 include_once 'C:/xampp/htdocs/Reclamation/Model/Reclamation.php';
 
 class ReclamationC{
-    function afficherreclamation(){
-        $sql="SELECT * FROM reclamations WHERE (mail='trabelsi.dali484@gmail.com')" ;
+    function afficherreclamation($email){
+        $sql="SELECT * FROM reclamations WHERE mail=('$email')" ;
         $db = config::getConnexion();
+       
         try{
+            $query=$db->prepare($sql);
+            $query->execute();
+            
+
             $liste = $db->query($sql);
             return $liste;
         }
@@ -28,17 +34,23 @@ class ReclamationC{
 
     }
     function ajouterreclamation($reclamation){
+        
         $sql="INSERT INTO  reclamations (type, date_reclamation, description,mail, sujet) 
         VALUES (:type,:date_reclamation,:description, :mail, :sujet)";
         $db = config::getConnexion();
+        
         try{
+            
+           
             $query = $db->prepare($sql);
             $query->execute([
                 'type' => $reclamation->gettype(),
                 'date_reclamation' => $reclamation->getdate(),
                 'description' => $reclamation->getdescription(),
-                'mail' => $reclamation->getmail(),
-                'sujet' => $reclamation->getsujet()
+                'mail' => $_SESSION['email'],
+                'sujet' => $reclamation->getsujet(),
+                
+
                 
             ]);			
         }
@@ -87,5 +99,48 @@ class ReclamationC{
             $e->getMessage();
         }
     }
+    function afficherreclamation1(){
+        $sql="SELECT * FROM reclamations ";
+        $db = config::getConnexion();
+       
+        try{
+            $query=$db->prepare($sql);
+            $query->execute();
+            
+
+            $liste = $db->query($sql);
+            return $liste;
+        }
+        catch(Exception $e){
+            die('Erreur:'. $e->getMessage());
+        }
+    }
+    function rechercherreclamation($id)
+    {
+        $requete = "select * from reclamations where id_reclamation like '%$id%'";
+        $config = config::getConnexion();
+        try {
+            $querry = $config->prepare($requete);
+            $querry->execute();
+            $result = $querry->fetchAll();
+            return $result ;
+        } catch (PDOException $th) {
+             $th->getMessage();
+        }
+    }
+    function trierreclamation(){
+    $requete = "select * from reclamations ORDER BY  date_reclamation DESC";
+    $config = config::getConnexion();
+    try {
+        $querry = $config->prepare($requete);
+        $querry->execute();
+        $result = $querry->fetchAll();
+        return $result ;
+    } catch (PDOException $th) {
+         $th->getMessage();
+    }
+}
+
 
     }
+    ?>

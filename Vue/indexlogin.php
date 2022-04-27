@@ -2,36 +2,36 @@
 session_start();
 include_once "C:/xampp/htdocs/Reclamation/Model/Utilisateur.php";
 include_once "C:/xampp/htdocs/Reclamation/Controller/UtilisateurC.php";
-$message="";
+include_once "C:/xampp/htdocs/Reclamation/config.php";
+//$message="";
 
-$userC=new UtilisateurC();
+//$userC=new UtilisateurC();
 if(isset($_POST["email"])&& 
    isset($_POST["password"])){
 	if(!empty($_POST["email"])&& 
 	   !empty($_POST["password"]))
+	{$db=config::getConnexion();
+		$email=$_POST['email'];
+		$password=$_POST['password'];
+		$stmt=$db->prepare("SELECT adresse_mail,password  FROM user WHERE adresse_mail=? AND password =?");
+		$stmt->execute(array($email,$password));
+		$count=$stmt->rowCount();
+		
+	if($count>0)
 	{
-       
-		$message=$userC->connexionUser($_POST["email"],$_POST["password"]);
-		$_SESSION['email']=$_POST["email"];
-		if($message=='pseudo ou le mot de passe est incorrect' ){
-		   $message='pseudo ou le mot de passe est incorrect';
-			
-		}
-		else{
-			header('Location :index1.php');
-			
-		}
+		$_SESSION['email']=$email;
+		header('Location:index1.php');
+		
+		//echo $_SESSION['email'];
 	}
- 
-	else 
-	$message="Missing information";
-}
-
-
-
-
+	else
+	{
+	echo ('email ou le mot de passe est incorrect');
+	}
+    }
+	}
 ?>
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
 	<title>Login V14</title>
@@ -104,7 +104,7 @@ if(isset($_POST["email"])&&
 							</a>
 						</div>
 					</div>
-
+					
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">
 							Connexion

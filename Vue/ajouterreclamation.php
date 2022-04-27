@@ -1,12 +1,13 @@
 <?php
 include '../Model/Reclamation.php';
 include '../Controller/ReclamationC.php';
+session_start();
 $error = "";
 $reclamation=null;
 $reclamationC= new ReclamationC();
 if (
     
-    isset($_POST["email"]) &&
+    //isset($_POST["email"]) &&
     isset($_POST["type"]) &&		
     isset($_POST["sujet"]) &&
     isset($_POST["date"]) && 
@@ -18,7 +19,7 @@ if (
         !empty($_POST["type"]) && 
         !empty($_POST["date"]) &&
         !empty($_POST["description"]) && 
-        !empty($_POST["email"]) && 
+       // !empty($_POST["email"]) && 
         !empty($_POST["sujet"])  
         
     ) {
@@ -26,7 +27,7 @@ if (
           $_POST['type'],
           $_POST['date'],
           $_POST['description'], 
-          $_POST['email'],
+         // $_POST['email'],
           $_POST['sujet']
           
       );
@@ -63,6 +64,7 @@ if (
 
     <link rel="stylesheet" href="assets/css/lightbox.css">
     <script src="assets/js/verification.js" type="text/javascript"></script>
+    
 <!--
 
 TemplateMo 571 Hexashop
@@ -84,7 +86,7 @@ https://templatemo.com/tm-571-hexashop
                             <!-- ***** Logo End ***** -->
                             <!-- ***** Menu Start ***** -->
                             <ul class="nav">
-                                <li class="scroll-to-section"><a href="index.html" class="active">Acceuil</a></li>
+                                <li class="scroll-to-section"><a href="index1.php" class="active">Acceuil</a></li>
                                 <li class="submenu"
                                 ><a href="products.html">Produits</a>
                                 <ul>
@@ -110,7 +112,7 @@ https://templatemo.com/tm-571-hexashop
                                     </ul>
                                 </li>
                                 
-                                <li style="background-color: white; color: black; position: relative; right: 2px;"><a href="inscription.html">s'inscrire</a></li>
+                                <li style="background-color: white; color: black; position: relative; right: 2px;"><a href="deconnexion.php">se déconnecter</a></li>
                             
                                 <li class="scroll-to-section">
                                 <a href="ajouter_dans_panier.html">
@@ -156,19 +158,21 @@ https://templatemo.com/tm-571-hexashop
                 <br>
                 <br>
                 
-                                   <form action="" method="POST">
+                                   <form action="" method="POST"  name="ajout">
                                        <table style="position: relative; left: 550px;">
-                                       <tr>
+                                       <!--<tr>
                                                <td style="color: white; position: relative; top: -49px;"><label for="email">Email</label></td>
-                                               <td style="position: relative; left: 25px; top: -54px;"><input type="email" name="email" id="email"></td>
+                                               <td style="position: relative; left: 25px; top: -54px;"><input type="email" name="email" id="email"  value="<?php echo $_SESSION['email'];?>" readonly></td>
                                                
                                            </tr>
-                                           
+-->
                                            <tr >
                                                <td style="color: white; top: -42px; position: relative;"><label for="type">Type de Reclamation</label></td>
                                                <td style="color: white; position: relative; left: 20px; top: -44px;"><input type="text" name="type"  id="type">
+                                              
                                                
                                            </tr>
+                                           
                                            <tr>
                                                <td style="color: white; position: relative; top: -32px;"><label for="date">Date</label></td>
                                                <td style="position: relative; left: 25px; top: -32px;"><input type="date" name="date" id="date"></td>
@@ -183,7 +187,7 @@ https://templatemo.com/tm-571-hexashop
                                                <td style="position: relative; left: 25px;"><textarea name="description" id="description" cols="50" rows="10" placeholder="Description et vos Remarques..."></textarea></td>
                                            </tr>
                                            <tr>
-                                               <td ><button  style="position: relative; left: 195px; top: 25px;" type="submit" >Envoyer</button></td>
+                                               <td ><button  style="position: relative; left: 195px; top: 25px;" type="submit" onclick="verif()">Envoyer</button></td>
                                                <td><input style="position: relative; left: 118px; top: 25px;" type="reset" value="Annuler"></td>
                                            </tr>
                                      

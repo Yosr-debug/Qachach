@@ -78,6 +78,7 @@ https://templatemo.com/tm-571-hexashop
                                 <ul>
                                     <li><a href="ajouterreclamation.php">Envoyer Reclamation</a></li>
                                     <li><a href="consulterreclamation.php">Consulter Reclamation</a></li>
+                                    <li><a href="consulterreponse.php">Consulter Reponses</a></li>
                                     
                                     
                                 </ul>

@@ -5,12 +5,12 @@ class Reclamation{
     private $description=null;
     private $mail=null;
     private $sujet=null;
-public  function __construct($type,$date,$description,$mail,$sujet){
+public  function __construct($type,$date,$description,$sujet){
     
     $this->type=$type;
     $this->date=$date;
     $this->description=$description;
-    $this->mail=$mail;
+   // $this->mail=$mail;
     $this->sujet=$sujet;
 }
 
@@ -23,9 +23,9 @@ public  function getdate(){
 public function getdescription(){
     return $this->description;
 }
-public  function getmail(){
+/*public  function getmail(){
     return $this->mail;
-}
+}*/
 public  function getsujet(){
     return $this->sujet;
 }

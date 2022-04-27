@@ -68,22 +68,22 @@ https://templatemo.com/tm-571-hexashop
                               
                             </ul>
                         </li>
-                            <li class="scroll-to-section"><a href="evenement.html">Evénements</a></li>
+                            <li class="scroll-to-section"><a href="indexlogin.php">Evénements</a></li>
                             <li class="scroll-to-section">
-                                <a href="./login/index.html">Livraison</a>
+                                <a href="indexlogin.php">Livraison</a>
                             </li>
                             
                             <li class="submenu">
                                 <a href="javascript:;">Reclamation</a>
                                 <ul>
-                                    <li><a href="./login/index.php">Envoyer Reclamation</a></li>
-                                    <li><a href="./login/index.php">Consulter Reclamation</a></li>
+                                    <li><a href="indexlogin.php">Envoyer Reclamation</a></li>
+                                    <li><a href="indexlogin.php">Consulter Reclamation</a></li>
                                     
                                     
                                 </ul>
                             </li>
                             
-                            <li style="background-color: white; color: black; position: relative; right: 2px;"><a href="./login/index.php">se connecter</a></li>
+                            <li style="background-color: white; color: black; position: relative; right: 2px;"><a href="indexlogin.php">se connecter</a></li>
                         
                             <li class="scroll-to-section">
                             <a href="./login/index.html">
