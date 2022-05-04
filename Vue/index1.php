@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
   <head>
 
@@ -79,6 +79,7 @@ https://templatemo.com/tm-571-hexashop
                                     <li><a href="ajouterreclamation.php">Envoyer Reclamation</a></li>
                                     <li><a href="consulterreclamation.php">Consulter Reclamation</a></li>
                                     <li><a href="consulterreponse.php">Consulter Reponses</a></li>
+                                    <li><a href="nouscontacter.php">Nous Contacter</a></li>
                                     
                                     
                                 </ul>

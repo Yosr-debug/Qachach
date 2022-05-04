@@ -42,6 +42,7 @@ https://templatemo.com/tm-571-hexashop
 -->
     </head>
     <body>
+    
         <header class="header-area header-sticky">
             <div class="container">
                 <div class="row">
@@ -54,7 +55,7 @@ https://templatemo.com/tm-571-hexashop
                             <!-- ***** Logo End ***** -->
                             <!-- ***** Menu Start ***** -->
                             <ul class="nav">
-                                <li class="scroll-to-section"><a href="index1.html" class="active">Acceuil</a></li>
+                                <li class="scroll-to-section"><a href="index1.php" class="active">Acceuil</a></li>
                                 <li class="submenu"
                                 ><a href="products.html">Produits</a>
                                 <ul>
@@ -75,12 +76,13 @@ https://templatemo.com/tm-571-hexashop
                                     <ul>
                                         <li><a href="ajouterreclamation.php">Envoyer Reclamation</a></li>
                                         <li><a href="consulterreclamation.php">Consulter Reclamation</a></li>
+                                        <li><a href="consulterreponse.php">Consulter Reponse</a></li>
                                         
                                         
                                     </ul>
                                 </li>
                                 
-                                <li style="background-color: white; color: black; position: relative; right: 2px;"><a href="inscription.html">s'inscrire</a></li>
+                                <li style="background-color: white; color: black; position: relative; right: 2px;"><a href="deconnexion.php">Se Deconnecter</a></li>
                             
                                 <li class="scroll-to-section">
                                 <a href="ajouter_dans_panier.html">
@@ -129,8 +131,10 @@ https://templatemo.com/tm-571-hexashop
                      <!--<td colspan="2" style="color: white; text-align: center;">Actions</td>-->
                  </tr>
                  <?php
-                 foreach($listeReponses as $reponse){
-                     ?>
+                 
+                 while($evenement = mysqli_fetch_array($res_data)){
+             ?>{
+                     
                      <tr>
                
 				<td style="color:white; padding:15px;"><?php echo $reponse['id_reclamation']; ?></td>
@@ -147,6 +151,9 @@ https://templatemo.com/tm-571-hexashop
                  ?>
 
                 </table>
+             
+
+           
             </div>
             <footer>
                 <div class="container">

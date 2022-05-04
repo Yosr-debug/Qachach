@@ -2,18 +2,20 @@
 session_start();
 
 	include '../Controller/ReclamationC.php';
+    //include '../config.php';
 	$reclamationC=new ReclamationC();
     $email=$_SESSION['email'];
+  
     if(isset($_GET['recherche']))
-    {
+    { 
         $listeReclamations=$reclamationC->rechercherreclamation($_GET['recherche']);
     }
     else if(isset($_POST['date']))
     {
-        $listeReclamations=$reclamationC->trierreclamation();  
+        $listeReclamations=$reclamationC->trierreclamation($email);  
     }
     else{
-	$listeReclamations=$reclamationC->afficherreclamation($email); 
+        $listeReclamations=$reclamationC->afficherreclamation($email); 
     }
 ?>
 <!DOCTYPE html>
@@ -49,6 +51,7 @@ https://templatemo.com/tm-571-hexashop
 -->
     </head>
     <body>
+ 
         <header class="header-area header-sticky">
             <div class="container">
                 <div class="row">
@@ -82,12 +85,13 @@ https://templatemo.com/tm-571-hexashop
                                     <ul>
                                         <li><a href="ajouterreclamation.php">Envoyer Reclamation</a></li>
                                         <li><a href="consulterreclamation.php">Consulter Reclamation</a></li>
+                                        <li><a href="consulterreponse.php">Consulter Reponse</a></li>
                                         
                                         
                                     </ul>
                                 </li>
                                 
-                                <li style="background-color: white; color: black; position: relative; right: 2px;"><a href="inscription.html">s'inscrire</a></li>
+                                <li style="background-color: white; color: black; position: relative; right: 2px;"><a href="deconnexion.php">Se Deconnecter</a></li>
                             
                                 <li class="scroll-to-section">
                                 <a href="ajouter_dans_panier.html">
@@ -138,6 +142,10 @@ https://templatemo.com/tm-571-hexashop
                         <td><input Type="submit" value="Trier" style="width:200px;"></td>
                       </table>
                     </form>
+                    <div class="text-center">
+        	
+        	
+        </div>
                 <table border="4" style="position: relative;  top: 50px; width: 100%; height: 150px; ">
                  <tr>
                      <th style="color:gold;">ID</th>
@@ -179,6 +187,9 @@ https://templatemo.com/tm-571-hexashop
                  ?>
 
                 </table>
+             
+                
+                                            
             </div>
             <footer>
                 <div class="container">

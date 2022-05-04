@@ -11,14 +11,13 @@ class ReclamationC{
         try{
             $query=$db->prepare($sql);
             $query->execute();
-            
-
             $liste = $db->query($sql);
             return $liste;
         }
-        catch(Exception $e){
+        catch(Exception $e){ 
             die('Erreur:'. $e->getMessage());
         }
+        
     }
     function supprimerreclamation($Id){
         $sql="DELETE FROM reclamations WHERE id_reclamation=:Id";
@@ -128,8 +127,8 @@ class ReclamationC{
              $th->getMessage();
         }
     }
-    function trierreclamation(){
-    $requete = "select * from reclamations ORDER BY  date_reclamation DESC";
+    function trierreclamation($email){
+    $requete = "SELECT  * FROM reclamations WHERE mail=('$email') ORDER BY  date_reclamation DESC  ";
     $config = config::getConnexion();
     try {
         $querry = $config->prepare($requete);
@@ -140,6 +139,19 @@ class ReclamationC{
          $th->getMessage();
     }
 }
+function trierreclamation1(){
+    $requete = "SELECT  * FROM reclamations  ORDER BY  date_reclamation DESC  ";
+    $config = config::getConnexion();
+    try {
+        $querry = $config->prepare($requete);
+        $querry->execute();
+        $result = $querry->fetchAll();
+        return $result ;
+    } catch (PDOException $th) {
+         $th->getMessage();
+    }
+}
+
 
 
     }

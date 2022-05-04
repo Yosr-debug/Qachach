@@ -1,44 +1,40 @@
 <?php
-include '../Model/Reclamation.php';
-include '../Controller/ReclamationC.php';
 session_start();
-$error = "";
-$reclamation=null;
-$reclamationC= new ReclamationC();
+$email=$_SESSION['email'];
 if (
     
-    //isset($_POST["email"]) &&
-    isset($_POST["type"]) &&		
+    
     isset($_POST["sujet"]) &&
-    isset($_POST["date"]) && 
-    isset($_POST["description"]) 
+   isset($_POST["message"]) 
     
 ) {
+
     if (
         
-        !empty($_POST["type"]) && 
-        !empty($_POST["date"]) &&
-        !empty($_POST["description"]) && 
-       // !empty($_POST["email"]) && 
+         
+       
+        !empty($_POST["message"]) && 
+      
         !empty($_POST["sujet"])  
         
     ) {
-          $reclamation = new Reclamation(
-          $_POST['type'],
-          $_POST['date'],
-          $_POST['description'], 
-         // $_POST['email'],
-          $_POST['sujet']
-          
-      );
-     
-      $reclamationC->ajouterreclamation($reclamation);
-      header('Location:consulterreclamation.php');
+        ini_set('SMTP','smtp.hexabyte.tn');
+        ini_set('smtp_port',25);
+        $dest="yosr.abbassi@esprit.Tn";
+        $sujet=$_POST['sujet'];
+        $corp=$_POST['message'];
+        $headers="From: mohamedali.trabelsi1@esprit.tn";
+        
+  if (mail($dest, $sujet, $corp, $headers)) {
+    echo "Email envoyé avec succès à $dest ...";
+  } else {
+    echo "Échec de l'envoi de l'email...";
   }
-  }
-    else
-        $error = "Missing information";
- ?>
+}
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -157,15 +153,7 @@ https://templatemo.com/tm-571-hexashop
                 <br>
                 <br>
                 <br>
-                <script>
-  function validateChar(a) {
-    const pattern1 = /^[a-zA-Z]+$/
-  
-    return pattern1.test(a.key )
-  }
-  </script>
-                
-                                   <form action="" method="POST"  name="ajout">
+                <form action="" method="POST" >
                                        <table style="position: relative; left: 550px;">
                                        <!--<tr>
                                                <td style="color: white; position: relative; top: -49px;"><label for="email">Email</label></td>
@@ -173,36 +161,24 @@ https://templatemo.com/tm-571-hexashop
                                                
                                            </tr>
 -->
-                                           <tr >
-                                               <td style="color: white; top: -42px; position: relative;"><label for="type">Type de Reclamation</label></td>
-                                               <td style="color: white; position: relative; left: 20px; top: -44px;"><input type="text" name="type"  id="type" onkeypress="return validateChar(event)">
-                                              
-                                               
-                                           </tr>
-                                           
-                                           <tr>
-                                               <td style="color: white; position: relative; top: -32px;"><label for="date">Date</label></td>
-                                               <td style="position: relative; left: 25px; top: -32px;"><input type="date" name="date" id="date"></td>
-                                           </tr>
+                                         
                                            <tr>
                                                <td style="color: white; position: relative; top: -18px;"><label for="sujet">Sujet</label></td>
-                                               <td style="position: relative; left: 25px; top: -22px;"><input type="text" name="sujet" id="sujet" onkeypress="return validateChar(event)"></td>
+                                               <td style="position: relative; left: 25px; top: -22px;"><input type="text" name="sujet" id="sujet" ></td>
                                            </tr>
                                            
                                            <tr>
-                                               <td style="color: white ; position: relative; top: -113px;"><Label  for="description">Description</Label></td>
-                                               <td style="position: relative; left: 25px;"><textarea name="description" id="description" cols="50" rows="10" placeholder="Description et vos Remarques..."></textarea></td>
+                                               <td style="color: white ; position: relative; top: -113px;"><Label  for="description">Message</Label></td>
+                                               <td style="position: relative; left: 25px;"><textarea name="message" id="description" cols="50" rows="10" placeholder="Description et vos Remarques..."></textarea></td>
                                            </tr>
                                            <tr>
-                                               <td ><button  style="position: relative; left: 195px; top: 25px;" type="submit" onclick="verif()">Envoyer</button></td>
+                                               <td ><input  style="position: relative; left: 105px; top: 25px;" type="submit" value="Envoyer"></td>
                                                <td><input style="position: relative; left: 118px; top: 25px;" type="reset" value="Annuler"></td>
                                            </tr>
                                      
                                  
                                        </table>
                                    </form>
-                                   </div>
-                                   
                                    <footer>
                                     <div class="container">
                                         <div class="row">
