@@ -4,7 +4,18 @@
     include_once "C:/xampp/htdocs/Reclamation/Controller/ReclamationC.php";
 
 	$reclamationC=new ReclamationC();
-	$listeReclamations=$reclamationC->afficherreclamation1(); 
+    if(isset($_GET['recherche']))
+    { 
+        $listeReclamations=$reclamationC->rechercherreclamation($_GET['recherche']);
+    }
+    else if(isset($_POST['date']))
+    {
+        $listeReclamations=$reclamationC->trierreclamation1();  
+    }
+    else{
+        $listeReclamations=$reclamationC->afficherreclamation1(); 
+    }
+	
 ?>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
@@ -243,6 +254,21 @@
         </header>
         <div style="background-color:black; height:100%">
         <<!--h4 style ="color:red; position:relative; top:288px; left:415px;">Liste Des Réclamations</h2>-->
+        <button style ="position:relative; left:1100px; top:40px; width:10%"><a href="print.php">Imprimer</a></button>
+        <form action="" method="GET">
+                        <table style=" position:relative;top:10px;">
+                            <tr>
+                        <td><input type="research" placeholder="Rechercher" name="recherche" ></td>
+                        <td><input Type="submit" value="Rechercher"></td>
+                      </table>
+                    </form>
+                    <form action="" method="POST">
+                        <table style=" position:relative;top:-22px; left:900px">
+                            <tr>
+                        <td><input type="text"  name="date" hidden value="1"></td>
+                        <td><input Type="submit" value="Trier" style="width:200px;"></td>
+                      </table>
+                    </form>
         <table border="2" style="position: relative;  top: 0px; width: 100%; height: 250px;">
                  <tr>
                      <th style="color:gold;">ID</th>
@@ -278,6 +304,7 @@
                  ?>
 
                 </table>
+               
                 </div>
                 </body>
                 <html>
