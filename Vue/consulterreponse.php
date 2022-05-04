@@ -132,8 +132,8 @@ https://templatemo.com/tm-571-hexashop
                  </tr>
                  <?php
                  
-                 while($evenement = mysqli_fetch_array($res_data)){
-             ?>{
+                 foreach($listeReponses as $reponse){
+             ?>
                      
                      <tr>
                
