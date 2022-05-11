@@ -15,6 +15,20 @@
 			}
 		}
 		
+		function rechercherid($id)
+        {
+            $requete = "select * from reservation where id_evenement like '$id'";
+            $config = config::getConnexion();
+            try {
+                $querry = $config->prepare($requete);
+                $querry->execute();
+                $result = $querry->fetchAll();
+                return $result ;
+            } catch (PDOException $e) {
+                 $th->getMessage();
+            }
+        }
+
 		function supprimerreservation($id_reservation){
 			$sql="DELETE FROM reservation WHERE id_reservation=:id_reservation";
 			$db = config::getConnexion();
@@ -29,15 +43,16 @@
 		}
 		
 		function ajouterreservation($reservation){
-			$sql="INSERT INTO reservation (id_reservation, nbr_place, date_reservation) 
-			VALUES (:id_reservation,:nbr_place, :date_reservation,)";
+			$sql="INSERT INTO reservation (id_reservation,nbr_place,date_reservation,id_evenement) 
+			VALUES (:id_reservation,:nbr_place,:date_reservation,:id_evenement)";
 			$db = config::getConnexion();
 			try{
 				$query = $db->prepare($sql);
 				$query->execute([
 					'id_reservation' => $reservation->getid_reservation(),
 					'nbr_place' => $reservation->getnbr_place(),
-					'date_reservation' => $reservation->getdate_reservation()
+					'date_reservation' => $reservation->getdate_reservation(),
+					'id_evenement' => $reservation->getid_evenement()
 					
 				]);			
 			}

@@ -338,6 +338,7 @@ mysqli_close($conn);
             </ul>
                 </nav>
         <a href="ajouterevenement.php"><button type="button" class="btn btn-primary">Ajouter Evenement</button></a>
+        <a href="afficherreservation.php"><button type="button" class="btn btn-primary">Afficher reservations</button></a>
         <?php
         while($row = mysqli_fetch_array($res_data)){
  echo $row['id_evenement'] ; //here goes the data
