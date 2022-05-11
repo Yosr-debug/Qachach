@@ -15,9 +15,12 @@ class ClientC {
         }
     }
 
+    
+
 
 
     function ajouteruser($client){
+        
         $sql="INSERT INTO user ( nom, prenom, adresse_mail,cin, num_tel, password) 
         VALUES ( :nom, :prenom, :adresse_mail, :cin, :num_tel, :password)";
         $db = config::getConnexion();
@@ -105,6 +108,29 @@ class ClientC {
         }
     }
     
+    function connexionc($data)
+    {
+      $db = config::getConnexion();
+      $email=$data['adresse_mail'];
+      $password=$data['password'];
+      $sql = "SELECT * FROM user WHERE adresse_mail='$email' AND password='$password'";
+      $resultat = $db->query($sql);
+      $user = $resultat->fetch();
+      var_dump($user);
+      
+    }
+
+    function recupererutilisateur(){
+        $sql="SELECT * FROM user";
+        $db = config::getConnexion();
+        try{
+            $listeutilisateurs = $db->query($sql);
+            return $listeutilisateurs;
+        }
+        catch(Exception $e){
+            die('Erreur:'. $e->getMessage());
+    }
+}
 
 
     

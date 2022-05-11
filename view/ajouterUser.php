@@ -1,15 +1,26 @@
+<?php session_start(); ?>
 <?php
     include_once '../model/user.php';
     include_once '../controller/userC.php';
+    $k=0;
 
     $error = "";
 
     
     $client = null;
+    $utilisateur = null;
+    $utilisateurc = new ClientC;
+    $listeutilisateurs = $utilisateurc->recupererutilisateur();
 
     
-    $clientC = new ClientC();
-    $name_error = '';
+   // $clientC = new ClientC();
+    $nom_error = '';
+    $prenom_error = '';
+    $mail_error = '';
+    $cin_error = '';
+    $num_tel_error = '';
+    $password_error = '';
+
 	
 
     if (
@@ -20,41 +31,71 @@
         isset($_POST["cin"]) && 
         isset($_POST["num_tel"])&&
         isset($_POST["password"])
-    ) {
-        if (
+    ) 
+    
+    
+    {
+        
+        
+        if ( empty($_POST["nom"]) || !preg_match("/^[a-zA-Z-' ]*$/",$_POST["nom"]))
+        
+        { $nom_error = 'Non valide nom';                      } 
+        if (empty($_POST['prenom']) || !preg_match("/^[a-zA-Z-' ]*$/",$_POST["prenom"]))
+        {$prenom_error = 'P non valide hehi';}
+        if (empty($_POST["adresse_mail"]) || !filter_var($_POST["adresse_mail"], FILTER_VALIDATE_EMAIL))
+        {$mail_error = 'lmail mouchou shih yehdik'; }
+        if (empty($_POST["password"]))
+        {$password_error = 'lezmk mot de passe ya metkhalef';}
+        if(empty($_POST["num_tel"]))
+        {$num_tel_error = 'telifounek ghalet mala hala fik';}
+        if(empty($_POST["cin"]) || (strlen($_POST["cin"]) != 8))
+        {$cin_error = 'CIN invalideeee';}
+       
+         
+
+        
+        
+        
+        
             
-           !empty($_POST["nom"]) && preg_match("/^[a-zA-Z-' ]*$/",$_POST["nom"])&&
-            
-               
-            
-			!empty($_POST['prenom']) && preg_match("/^[a-zA-Z-' ]*$/",$_POST["nom"])&&
-            !empty($_POST["adresse_mail"]) && filter_var($_POST["adresse_mail"], FILTER_VALIDATE_EMAIL)&&
-			!empty($_POST["cin"]) && strlen($_POST["cin"]) == 8 &&
-            !empty($_POST["num_tel"]) && 
-            !empty($_POST["password"])
-        ) {
-            $client = new Client(
+        
+        else {
+            foreach ($listeutilisateurs as $utilisateur) {
+                if ($utilisateur['adresse_mail'] == $_POST['adresse_mail']) {
+                    ?>
+                    <script>
+                        alert("taken");
+                       
+                        </script>
+                        <?php
+                    $k = 1;
+                }
+            }
+            if ($k == 0) {
+           $_SESSION['email2']=$_POST["adresse_mail"];
+            //$client = new Client(
                 
-                $_POST['nom'],
-				$_POST['prenom'],
-                $_POST['adresse_mail'], 
-				$_POST['cin'],
-                $_POST['num_tel'],
-                $_POST['password']
-            );
-            $clientC->ajouteruser($client);
-            header('Location:afficherUser.php');
-        }
-        else
-            $error = "Missing information";
-            $name_error = 'Name is Required';
-    }
+            $_SESSION['nomv']=$_POST["nom"];
+            $_SESSION['prenomv']=$_POST["prenom"];
+            $_SESSION['cinv']=$_POST["cin"];
+            $_SESSION['num_telv']=$_POST["num_tel"];
+            $_SESSION['passwordv']=$_POST["password"];
+       // );
+        //$clientC->ajouteruser($client); 
+        header('Location:mail_verification.php');
+            }
+    } }
+            
+    
 
     
 ?>
 <html lang="en">
 <head>
-    
+    <style>
+        .error {color: #FF0000;}
+
+    </style>
 
 
     <meta charset="UTF-8">
@@ -89,26 +130,40 @@
 
             <div class="x">
                 <label for="nom">Nom</label>
-                <input id="nom" name="nom" type="text">
-                <span id="name_error" class="text-danger"></span>
-                <div class="error"></div>
+                <?php 
+                if(isset($_POST["nom"]))
+                {echo'<input id="nom" name="nom" type="text" value="'.$_POST["nom"].'">';}
+                else {
+                echo'<input id="nom" name="nom" type="text">';
+                }
+
+
+
+                ?>
+                
+
+                <span  class="error"><?php echo $nom_error;?> </span>
+                
             </div>
             <br>
              <div class="x">
                 <label for="prenom">Prenom</label>
                 <input id="prenom"name="prenom" type="text">
-                <div class="error"></div>
+                <span  class="error"><?php echo $prenom_error;?> </span>
+                
             </div>
             <br>
             <div class="x">
                 <label for="adresse_mail">Email</label>
                 <input id="adresse_mail" name="adresse_mail" type="text">
+                <span  class="error"><?php echo $mail_error;?> </span>
                 <div class="error"></div>
             </div>
             <br>
             <div class="x">
                 <label for="password">password</label>
                 <input id="password"name="password" type="password">
+                <span  class="error">*<?php echo $password_error;?> </span>
                 <div class="error"></div>
                 <script>
                     function myFunction() {
@@ -130,29 +185,25 @@
             
             <div class="x">
                 <label for="num_tel">Numero de telephone</label>
-                <input id="num_tel"name="num_tel" type="tex">
+                <input id="num_tel"name="num_tel" type="text">
+                <span  class="error"><?php echo $num_tel_error;?> </span>
                 <div class="error"></div>
             </div>
             <br>
             <div class="x">
                 <label for="cin">CIN</label>
                 <input id="cin"name="cin" type="text">
+                <span  class="error"><?php echo $cin_error;?> </span>
                 <div class="error"></div>
             </div>
             <br>
            
             <button type="submit">Sign Up</button>
+            
 			
         </form>
     </div>
-                </body>
-                </html>
+</body>
+</html>
 
-
-
-
-
-
-
-
-
+                
